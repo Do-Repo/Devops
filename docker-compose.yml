@@ -23,6 +23,4 @@ services:
     stdin_open: true
     tty: true
 
-volumes:
-  db:
 
