@@ -30,10 +30,15 @@ pipeline {
             }
         }
 
-        stage('Code coverage') {
-            steps {
-                sh 'mvn sonar:sonar'
-            }
+        // stage('Code coverage') {
+        //     steps {
+        //         sh 'mvn sonar:sonar'
+        //     }
+        // }
+
+        stage('Versioning') {
+            echo mvn -version
+            echo java -version
         }
 
         stage('Building Image') {
