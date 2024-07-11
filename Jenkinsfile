@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        stage('Docker compose') {
+            steps {
+                sh 'docker compose up -d'
+            }
+        }
+
         stage('Maven Test') {
             steps {
                 sh "mvn -version"
