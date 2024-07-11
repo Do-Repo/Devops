@@ -10,6 +10,8 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
     ports:
       - "3306:3306"
+    network_mode: "host"
+    
 
   app-backend:
     links:
@@ -22,9 +24,7 @@ services:
       - .m2:/root/.m2
     stdin_open: true
     tty: true
-    environment:
-      SPRING_PROFILES_ACTIVE: test
-
+    
 volumes:
   db:
 

@@ -34,7 +34,7 @@ pipeline {
 
         stage('Unit testing') {
             steps {
-                sh 'docker compose exec app-backend mvn test -Dspring.profiles.active=test'
+                sh 'mvn test'
             }
         }
     }
