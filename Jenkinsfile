@@ -18,9 +18,21 @@ pipeline {
             }
         }
 
-        stage('Build skip test') {
+        stage('Build') {
             steps {
                 sh 'mvn package -DskipTests'
+            }
+        }
+
+        stage('Unit testing') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Code coverage') {
+            steps {
+                sh 'mvn sonar:sonar'
             }
         }
 
@@ -36,10 +48,6 @@ pipeline {
             }
         }
 
-        stage('Unit testing') {
-            steps {
-                sh 'mvn test'
-            }
-        }
+        
     }
 }
