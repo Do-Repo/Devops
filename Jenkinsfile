@@ -36,10 +36,6 @@ pipeline {
         //     }
         // }
 
-        stage('Versioning') {
-            echo mvn -version
-            echo java -version
-        }
 
         stage('Building Image') {
             steps {
