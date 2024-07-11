@@ -20,21 +20,21 @@ pipeline {
             }
         }
 
+        stage('Building Image') {
+            steps {
+                sh 'docker build -t yasine123/eventsproject .'
+            }
+        }
+
         stage('Docker compose') {
             steps {
                 sh 'docker compose up -d'
             }
         }
 
-        stage('Maven Test') {
-            steps {
-                sh "mvn -version"
-            }
-        }
-
         stage('Unit testing') {
             steps {
-                sh 'mvn test'
+                sh 'docker-compose exec app-backend mvn test'
             }
         }
     }
