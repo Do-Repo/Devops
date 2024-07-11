@@ -34,13 +34,13 @@ public class EventRestController {
     @PostMapping("/addPart")
     public Participant addParticipant(@RequestBody ParticipantDTO participantDTO){
         Participant participant = new Participant();
-        participant.setIdPart(participantDTO.getIdPart());
-        participant.setNom(participantDTO.getNom());
-        participant.setPrenom(participantDTO.getPrenom());
-        participant.setTache(Tache.valueOf(participantDTO.getTache()));
+        participant.setIdPart(participantDTO.idPart);
+        participant.setNom(participantDTO.nom);
+        participant.setPrenom(participantDTO.prenom);
+        participant.setTache(Tache.valueOf(participantDTO.tache));
 
         Set<Event> events = new HashSet<>();
-        for (Integer eventId : participantDTO.getEventIds()) {
+        for (Integer eventId : participantDTO.eventIds) {
             eventRepository.findById(eventId).ifPresent(events::add);
         }
         participant.setEvents(events.isEmpty() ? null : events);
@@ -50,20 +50,20 @@ public class EventRestController {
     @PostMapping("/addEvent/{id}")
     public Event addEventPart(@RequestBody EventDTO eventDTO, @PathVariable("id") int idPart){
         Event event = new Event();
-        event.setIdEvent(eventDTO.getIdEvent());
-        event.setDescription(eventDTO.getDescription());
-        event.setDateDebut(eventDTO.getDateDebut());
-        event.setDateFin(eventDTO.getDateFin());
-        event.setCout(eventDTO.getCout());
+        event.setIdEvent(eventDTO.idEvent);
+        event.setDescription(eventDTO.description);
+        event.setDateDebut(eventDTO.dateDebut);
+        event.setDateFin(eventDTO.dateFin);
+        event.setCout(eventDTO.cout);
 
         Set<Participant> participants = new HashSet<>();
-        for (Integer participantId : eventDTO.getParticipantIds()) {
+        for (Integer participantId : eventDTO.participantIds) {
             participantRepository.findById(participantId).ifPresent(participants::add);
         }
         event.setParticipants(participants);
 
         Set<Logistics> logistics = new HashSet<>();
-        for (Integer logisticId : eventDTO.getLogistics()) {
+        for (Integer logisticId : eventDTO.logisticIds) {
             logisticsRepository.findById(logisticId).ifPresent(logistics::add);
         }
         event.setLogistics(logistics);
@@ -73,20 +73,20 @@ public class EventRestController {
     @PostMapping("/addEvent")
     public Event addEvent(@RequestBody EventDTO eventDTO){
         Event event = new Event();
-        event.setIdEvent(eventDTO.getIdEvent());
-        event.setDescription(eventDTO.getDescription());
-        event.setDateDebut(eventDTO.getDateDebut());
-        event.setDateFin(eventDTO.getDateFin());
-        event.setCout(eventDTO.getCout());
+        event.setIdEvent(eventDTO.idEvent);
+        event.setDescription(eventDTO.description);
+        event.setDateDebut(eventDTO.dateDebut);
+        event.setDateFin(eventDTO.dateFin);
+        event.setCout(eventDTO.cout);
 
         Set<Participant> participants = new HashSet<>();
-        for (Integer participantId : eventDTO.getParticipantIds()) {
+        for (Integer participantId : eventDTO.participantIds) {
             participantRepository.findById(participantId).ifPresent(participants::add);
         }
         event.setParticipants(participants);
 
         Set<Logistics> logistics = new HashSet<>();
-        for (Integer logisticId : eventDTO.getLogistics()) {
+        for (Integer logisticId : eventDTO.logisticIds) {
             logisticsRepository.findById(logisticId).ifPresent(logistics::add);
         }
         event.setLogistics(logistics);
@@ -96,11 +96,11 @@ public class EventRestController {
     @PutMapping("/addAffectLog/{description}")
     public Logistics addAffectLog(@RequestBody LogisticsDTO logisticsDTO,@PathVariable("description") String descriptionEvent){
         Logistics logistics = new Logistics();
-        logistics.setIdLog(logisticsDTO.getIdLog());
-        logistics.setDescription(logisticsDTO.getDescription());
-        logistics.setReserve(logisticsDTO.isReserve());
-        logistics.setPrixUnit(logisticsDTO.getPrixUnit());
-        logistics.setQuantite(logisticsDTO.getQuantite());
+        logistics.setIdLog(logisticsDTO.idLog);
+        logistics.setDescription(logisticsDTO.description);
+        logistics.setReserve(logisticsDTO.reserve);
+        logistics.setPrixUnit(logisticsDTO.prixUnit);
+        logistics.setQuantite(logisticsDTO.quantite);
         return eventServices.addAffectLog(logistics,descriptionEvent);
     }
     @GetMapping("/getLogs/{d1}/{d2}")
