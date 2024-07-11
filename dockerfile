@@ -6,5 +6,5 @@ RUN apt-get update && apt-get install -y maven
 
 ADD target/*.jar eventsProject.jar
 
-ENTRYPOINT [ "java", "-jar", "/eventsProject.jar" ]
+ENTRYPOINT ["java", "-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}", "-jar", "/eventsProject.jar"]
 
