@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        stage('Build skip test') {
+            steps {
+                sh 'mvn package -DskipTests'
+            }
+        }
+
         stage('Docker compose') {
             steps {
                 sh 'docker compose up -d'
