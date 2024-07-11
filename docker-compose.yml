@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
     ports:
-      - "3307:3306"
+      - "3306:3306"
 
   app-backend:
     depends_on:
