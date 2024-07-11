@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
 
     triggers {
@@ -13,13 +14,10 @@ pipeline {
             }
         }
 
-        stage('Show Date') {
+        stage('Maven Test') {
             steps {
-                script {
-                    echo "Current date and time: ${new Date()}"
-                }
+                sh "mvn -version"
             }
         }
-        
     }
 }
