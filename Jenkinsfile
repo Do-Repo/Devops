@@ -11,6 +11,14 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage('Show Date') {
+            steps {
+                script {
+                    echo "Current date and time: ${new Date()}"
+                }
+            }
+        }
     }
 
 }
