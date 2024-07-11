@@ -32,12 +32,6 @@ pipeline {
             }
         }
 
-        stage('Pause') {
-            steps {
-                sleep(time:30,unit:"SECONDS")
-            }
-        }
-
         stage('Unit testing') {
             steps {
                 sh 'mvn test'
