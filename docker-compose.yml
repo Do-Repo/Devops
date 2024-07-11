@@ -12,7 +12,7 @@ services:
       - "3306:3306"
 
   app-backend:
-    depends_on:
+    links:
       - mysqldb
     build: ./
     restart: on-failure
