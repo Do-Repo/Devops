@@ -30,11 +30,17 @@ pipeline {
             }
         }
 
-        // stage('Code coverage') {
-        //     steps {
-        //         sh 'mvn sonar:sonar'
-        //     }
-        // }
+        stage('SonarQube analysis') {
+            tools {
+                jdk "JDK17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
+            }
+
+            steps {
+                withSonarQubeEnv(installationName: 'SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
 
 
         stage('Building Image') {
