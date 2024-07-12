@@ -55,6 +55,19 @@ pipeline {
             }
         }
 
+        stage('Deploy Image') {
+            steps {
+                sh 'docker login -u yasine123 -p yasine123'
+                sh 'docker push yasine123/eventsproject '
+            }
+        }
+
+        stage('Deploy to Nexus') {
+            steps {
+                sh 'mvn deploy -DskipTests -e'
+            }
+        }
+
         
     }
 }
