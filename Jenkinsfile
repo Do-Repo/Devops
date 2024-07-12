@@ -42,6 +42,15 @@ pipeline {
             }
         }
 
+        stage('Deploy to Nexus') {
+            tools {
+                jdk "JAVA_HOME"
+            }
+            steps {
+                sh 'mvn clean deploy -DskipTests'
+            }
+        }
+
 
         stage('Building Image') {
             steps {
@@ -59,15 +68,6 @@ pipeline {
             steps {
                 sh 'docker login -u yasine123 -p yasine123'
                 sh 'docker push yasine123/eventsproject '
-            }
-        }
-
-        stage('Deploy to Nexus') {
-            tools {
-                jdk "JAVA_HOME"
-            }
-            steps {
-                sh 'mvn deploy -DskipTests -e'
             }
         }
 
