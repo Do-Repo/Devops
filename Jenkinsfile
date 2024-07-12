@@ -63,6 +63,9 @@ pipeline {
         }
 
         stage('Deploy to Nexus') {
+            tools {
+                jdk "JAVA_HOME"
+            }
             steps {
                 sh 'mvn deploy -DskipTests -e'
             }
