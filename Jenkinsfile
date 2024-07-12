@@ -32,7 +32,7 @@ pipeline {
 
         stage('SonarQube analysis') {
             tools {
-                jdk "JDK17" // the name you have given the JDK installation using the JDK manager (Global Tool Configuration)
+                jdk "JDK17" 
             }
 
             steps {
@@ -70,8 +70,6 @@ pipeline {
                 sh 'docker push yasine123/eventsproject '
             }
         }
-
-        
     }
     
 }
